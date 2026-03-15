@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Icon Generator — Marumaru Lyrics Overlay</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #111; color: #eee; }
+    canvas { margin: 8px; border: 1px solid #333; }
+    a { color: #6c5ce7; }
+  </style>
+</head>
+<body>
+  <h2>Marumaru Lyrics Overlay — Icon Generator</h2>
+  <p>Right-click each canvas and "Save image as…" to export the PNGs.</p>
+  <div id="canvases"></div>
+
+  <script>
+    const sizes = [16, 48, 128];
+
+    for (const size of sizes) {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Background circle
+      const r = size / 2;
+      ctx.beginPath();
+      ctx.arc(r, r, r, 0, Math.PI * 2);
+      ctx.fillStyle = '#6c5ce7';
+      ctx.fill();
+
+      // Music note symbol
+      ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = `bold ${size * 0.55}px serif`;
+      ctx.fillText('♪', r, r + size * 0.03);
+
+      const label = document.createElement('p');
+      label.textContent = `icon-${size}.png`;
+      document.getElementById('canvases').appendChild(label);
+      document.getElementById('canvases').appendChild(canvas);
+    }
+  </script>
+</body>
+</html>

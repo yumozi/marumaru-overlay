@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.marumaru-x.com)",
+      "Bash(python3:*)",
+      "Bash(pip install:*)",
+      "Bash(zip:*)",
+      "Bash(powershell:*)",
+      "Bash(rm:*)"
+    ]
+  }
+}

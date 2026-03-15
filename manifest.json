@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Marumaru 日文歌词浮窗显示 Japanese Lyrics Overlay",
+  "version": "1.0.0",
+  "description": "Floating lyrics overlay that displays the currently active lyric line from marumaru-x.com on any tab.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["*://www.marumaru-x.com/*"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.marumaru-x.com/japanese-song/play-*"],
+      "js": ["src/scraper.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/overlay.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png"
+    }
+  }
+}
